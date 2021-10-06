@@ -123,29 +123,35 @@ nav
 .listItem
 {
     display: flex;
-    font-size: x-large;
-    padding: 20px;
+    justify-content: space-between;
     border-bottom: $darkerGrey 2px solid; 
     &:hover
     {
         background-color: $baseGrey;
     }
-    i
+    div
     {
-        margin-top: 2px;
-        padding: 0px 4px;
-        border-radius: 5px;
-        &:hover
+        display: flex;
+        font-size: x-large;
+        padding: 20px;
+        align-items: center;
+        
+        i
         {
-            background-color: $darkerGrey;
+            margin-top: 2px;
+            padding: 5px 4px;
+            border-radius: 5px;
+            &:hover
+            {
+                background-color: $darkerGrey;
+            }
         }
-    }
-    .fa-check
-    {
-        padding: 0px 1.4px;
-    }
-    p
-    {
-        margin: 0px 20px;
+        p
+        {
+            margin: 0px 20px;
+            padding: 4px;
+            border-radius: 5px;
+        }
+
     }
 }

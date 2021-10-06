@@ -95,26 +95,30 @@ nav div a:hover {
 
 .listItem {
   display: flex;
-  font-size: x-large;
-  padding: 20px;
+  justify-content: space-between;
   border-bottom: #cfcfcf 2px solid;
 }
 .listItem:hover {
   background-color: #e9e9e9;
 }
-.listItem i {
+.listItem div {
+  display: flex;
+  font-size: x-large;
+  padding: 20px;
+  align-items: center;
+}
+.listItem div i {
   margin-top: 2px;
-  padding: 0px 4px;
+  padding: 5px 4px;
   border-radius: 5px;
 }
-.listItem i:hover {
+.listItem div i:hover {
   background-color: #cfcfcf;
 }
-.listItem .fa-check {
-  padding: 0px 1.4px;
-}
-.listItem p {
+.listItem div p {
   margin: 0px 20px;
+  padding: 4px;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,7 +1,6 @@
 const KEY = "Lists";
 let listIndex;
 
-
 window.onload = function()
 {
     if(window.localStorage.getItem(KEY) != undefined)
@@ -17,6 +16,31 @@ window.onload = function()
                 listContainer.getList(i).addItem(old.lists[i].items[j].name, old.lists[i].items[j].desc, true, old.lists[i].items[j].finished);
                 listContainer.getList(i).getItem(j).finished = old.lists[i].items[j].finished;
             }
+        }
+    }
+}
+toggle = false;
+let editIndex;
+function edit(index)
+{
+    if(editIndex == undefined)
+    {
+        editIndex = index;
+    }
+    if(index == editIndex)
+    {
+        toggle = !toggle;
+        if(toggle)
+        {
+            document.getElementById("p" + index).contentEditable = "true";
+            document.getElementById("p" + index).style.backgroundColor = "#d0d0d0";
+        }
+        else
+        {
+            editIndex = undefined;
+            document.getElementById("p" + index).contentEditable = "false";
+            listContainer.getList(listIndex).getItem(index).setValues(document.getElementById("p" + index).innerText, listContainer.getList(listIndex).getItem(index).desc);
+            listContainer.getList(listIndex).render();
         }
     }
 }
@@ -213,11 +237,11 @@ class List
         {
             if(this.items[i].finished)
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p><b>${this.items[i].name}</b></p></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
             }
             else
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p><b>${this.items[i].name}</b></p></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
             }
         }
         save();
@@ -243,6 +267,7 @@ class ToDoItem
     {
         this.name = name;
         this.desc = desc;
+        save();
     }
 }
 
