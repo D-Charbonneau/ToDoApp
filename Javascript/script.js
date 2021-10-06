@@ -1,3 +1,25 @@
+const KEY = "Lists";
+let listIndex;
+
+
+window.onload = function()
+{
+    if(window.localStorage.getItem(KEY) != undefined)
+    {
+        let old = JSON.parse(window.localStorage.getItem(KEY));
+    
+        for(let i = 0; i < old.lists.length; i++)
+        {
+            listContainer.addList(old.lists[i].listName, true);
+            
+            for(let j = 0; j < old.lists[i].items.length; j++)
+            {
+                listContainer.getList(i).addItem(old.lists[i].items[j].name, old.lists[i].items[j].desc, true, old.lists[i].items[j].finished);
+            }
+        }
+    }
+}
+
 function createList()
 {
     let listInput = document.getElementById("listName");
@@ -8,7 +30,6 @@ function createList()
     }
 }
 
-let listIndex;
 
 function chooseList(index)
 {
@@ -52,12 +73,12 @@ function toggleActive(index)
         document.getElementById("i" + index).classList.add("fa-times");
     }
     listContainer.getList(listIndex).getItem(index).finished = !listContainer.getList(listIndex).getItem(index).finished;
-
 }
 
 function Clear()
 {
     listContainer.clearItems();
+    save();
 }
 
 class ListContainer
@@ -68,10 +89,14 @@ class ListContainer
         this.lists = [];
     }
 
-    addList(listName)
+    addList(listName, loading = false)
     {
         this.lists.push(new List(listName, this.listID++));
         this.render();
+        if(!loading)
+        {
+            save();
+        }
     }
 
     getList(index)
@@ -101,8 +126,8 @@ class ListContainer
             {
                 nav.innerHTML += `<a id="list${i}" class="" onclick="chooseList(${i})">${this.lists[i].listName}</a>`;
             }
-            
         }
+        save();
     }
 
     clearItems()
@@ -118,7 +143,6 @@ class ListContainer
     }
 }
 
-let listContainer = new ListContainer();
 function devList()
 {
     listContainer.addList("FirstList");
@@ -146,9 +170,13 @@ class List
         this.items = [];
     }
     
-    addItem(name, desc)
+    addItem(name, desc, loading = false, finished = false)
     {
-        this.items.push(new ToDoItem(name, desc, this.numID++));
+        this.items.push(new ToDoItem(name, desc, this.itemID++, finished));
+        if(!loading)
+        {
+            save();
+        }
     }
 
     getItem(index)
@@ -181,7 +209,7 @@ class List
         display.innerHTML = "";
         for(let i = 0; i < this.items.length; i++)
         {
-            if(this.items[i].name.finished)
+            if(this.items[i].finished)
             {
                 display.innerHTML += `<div class="listItem" id="${i}"><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p><b>${this.items[i].name}</b></p></div>`;
             }
@@ -190,6 +218,7 @@ class List
                 display.innerHTML += `<div class="listItem" id="${i}"><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p><b>${this.items[i].name}</b></p></div>`;
             }
         }
+        save();
     }
 }
 
@@ -208,11 +237,16 @@ class ToDoItem
         return this.id;
     }
 
-    setValue(value)
+    setValues(name, desc)
     {
-        this.value = value;
+        this.name = name;
+        this.desc = desc;
     }
 }
 
+function save()
+{
+    window.localStorage.setItem(KEY, JSON.stringify(listContainer));
+}
 
-devList();
+let listContainer = new ListContainer();
