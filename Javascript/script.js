@@ -76,12 +76,18 @@ function addToList()
 {
     let nameInput = document.getElementById("itemName");
     let descInput = document.getElementById("itemDesc");
-    if(nameInput.value != "")
+    if(nameInput.value != "" && nameInput.value.length <= 25)
     {
+        nameInput.style.color = "black";
         listContainer.getList(listIndex).addItem(nameInput.value, descInput.value);
         nameInput.value = "";
         descInput.value = "";
         listContainer.getList(listIndex).render();
+    }
+    else if(nameInput.value.length > 25)
+    {
+        nameInput.style.color = "red";
+        nameInput.value = nameInput.value.substring(0, 25);
     }
 }
 
@@ -237,11 +243,11 @@ class List
         {
             if(this.items[i].finished)
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
             }
             else
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
             }
         }
         save();
@@ -274,6 +280,15 @@ class ToDoItem
 function save()
 {
     window.localStorage.setItem(KEY, JSON.stringify(listContainer));
+}
+
+function shorten(desc, name)
+{
+    if(desc.length > 55)
+    {
+        return desc.substring(0, 50 + (25 - name.length)) + "...";
+    }
+    return desc;
 }
 
 let listContainer = new ListContainer();
