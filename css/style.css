@@ -109,7 +109,8 @@ nav div a:hover {
 }
 .listItem div i {
   margin-top: 2px;
-  padding: 5px 4px;
+  margin: 0px 5px;
+  padding: 5px 6px;
   border-radius: 5px;
 }
 .listItem div i:hover {
@@ -119,6 +120,15 @@ nav div a:hover {
   margin: 0px 20px;
   padding: 4px;
   border-radius: 5px;
+}
+
+.desc {
+  color: #838383;
+  padding: 4px;
+  border-radius: 5px;
+}
+.desc:hover {
+  background-color: #cfcfcf;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -243,11 +243,11 @@ class List
         {
             if(this.items[i].finished)
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
             }
             else
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
             }
         }
         save();
@@ -284,11 +284,17 @@ function save()
 
 function shorten(desc, name)
 {
-    if(desc.length > 55)
+    if(desc.length > 30 + (25 - name.length))
     {
-        return desc.substring(0, 50 + (25 - name.length)) + "...";
+        return desc.substring(0, 30 + (25 - name.length)) + "...";
     }
     return desc;
+}
+
+function trash(index)
+{
+    listContainer.getList(listIndex).items.splice(index, 1);
+    listContainer.getList(listIndex).render();
 }
 
 let listContainer = new ListContainer();
