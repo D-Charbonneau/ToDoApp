@@ -243,11 +243,11 @@ class List
         {
             if(this.items[i].finished)
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" title="Completed" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
             }
             else
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" title="Uncompleted" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
             }
         }
         save();
@@ -295,6 +295,18 @@ function trash(index)
 {
     listContainer.getList(listIndex).items.splice(index, 1);
     listContainer.getList(listIndex).render();
+}
+
+function hide()
+{
+    document.getElementById("delete").style.left = "-80px";
+    document.getElementById("hideDelete").style.left = "-80px";
+    setTimeout(() => 
+    {
+        document.getElementById("delete").style.left = "10px"; 
+        document.getElementById("hideDelete").style.left = "52px";
+    }, 3500);
+    
 }
 
 let listContainer = new ListContainer();

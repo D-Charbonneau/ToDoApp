@@ -1,5 +1,5 @@
 $theme: #270081;
-$themeDark: #21006d;
+$themeDark: #1b005a;
 $activeColor: #300091;
 $themeFontColor: #eefffe;
 $font: 'Roboto', sans-serif;
@@ -148,6 +148,10 @@ nav
                 background-color: $darkerGrey;
             }
         }
+        .fa-check
+        {
+            padding: 5px 3.45px;
+        }
         p
         {
             margin: 0px 20px;
@@ -169,3 +173,41 @@ nav
     }
 }
 
+#delete
+{
+    font-size: 3em;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    border: none;
+    background-color: $theme;
+    color: $themeFontColor;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    transition: left .75s;
+    &:hover
+    {
+        background-color: #a50000;
+        color: black;
+    }
+}
+#hideDelete
+{
+    font-size: 1.7em;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: none;
+    background-color: $themeDark;
+    color: $themeFontColor;
+    position: fixed;
+    bottom: 52px;
+    left: 52px;
+    transition: left .75s;
+    &:hover
+    {
+        background-color: $darkGrey;
+        color: $activeColor;
+    }
+}

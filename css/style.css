@@ -21,7 +21,7 @@ nav div a {
   margin: 0px 3px;
 }
 nav div a:hover {
-  background-color: #21006d;
+  background-color: #1b005a;
 }
 
 #addList, #addItem {
@@ -68,7 +68,7 @@ nav div a:hover {
   border-radius: 100vw;
 }
 #addList #newListDropdown button:hover, #addList #newItemDropdown button:hover, #addItem #newListDropdown button:hover, #addItem #newItemDropdown button:hover {
-  background-color: #21006d;
+  background-color: #1b005a;
 }
 #addList:hover #newListDropdown, #addList:hover #newItemDropdown, #addItem:hover #newListDropdown, #addItem:hover #newItemDropdown {
   right: -5px;
@@ -116,6 +116,9 @@ nav div a:hover {
 .listItem div i:hover {
   background-color: #cfcfcf;
 }
+.listItem div .fa-check {
+  padding: 5px 3.45px;
+}
 .listItem div p {
   margin: 0px 20px;
   padding: 4px;
@@ -129,6 +132,42 @@ nav div a:hover {
 }
 .desc:hover {
   background-color: #cfcfcf;
+}
+
+#delete {
+  font-size: 3em;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  border: none;
+  background-color: #270081;
+  color: #eefffe;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  transition: left 0.75s;
+}
+#delete:hover {
+  background-color: #a50000;
+  color: black;
+}
+
+#hideDelete {
+  font-size: 1.7em;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: none;
+  background-color: #1b005a;
+  color: #eefffe;
+  position: fixed;
+  bottom: 52px;
+  left: 52px;
+  transition: left 0.75s;
+}
+#hideDelete:hover {
+  background-color: #838383;
+  color: #300091;
 }
 
 /*# sourceMappingURL=style.css.map */
