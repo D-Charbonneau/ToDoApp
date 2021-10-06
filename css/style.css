@@ -1,0 +1,120 @@
+body {
+  margin: 0px;
+  overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
+}
+
+nav {
+  background-color: #270081;
+  color: #eefffe;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+nav div {
+  margin: 0px 50px;
+  display: flex;
+}
+nav div a {
+  display: inline;
+  padding: 20px;
+  margin: 0px 3px;
+}
+nav div a:hover {
+  background-color: #21006d;
+}
+
+#addList, #addItem {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+#addList #newListDropdown, #addList #newItemDropdown, #addItem #newListDropdown, #addItem #newItemDropdown {
+  display: flex;
+  position: absolute;
+  margin: 0px;
+  padding: 0px 20px 25px 20px;
+  top: 58.5px;
+  width: 325px;
+  right: -375px;
+  border: 1px grey solid;
+  border-top: none;
+  border-bottom-left-radius: 15px;
+  transition: right 0.4s;
+  color: black;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 14px 6px 30px -9px #000000;
+}
+#addList #newListDropdown a, #addList #newItemDropdown a, #addItem #newListDropdown a, #addItem #newItemDropdown a {
+  padding: 0px;
+}
+#addList #newListDropdown input, #addList #newItemDropdown input, #addItem #newListDropdown input, #addItem #newItemDropdown input {
+  width: 80%;
+  text-align: center;
+  font-size: large;
+  padding: 5px;
+}
+#addList #newListDropdown button, #addList #newItemDropdown button, #addItem #newListDropdown button, #addItem #newItemDropdown button {
+  margin-top: 15px;
+  padding: 5px;
+  width: 70%;
+  border: none;
+  background-color: #270081;
+  color: #eefffe;
+  font-size: 18px;
+  border-radius: 100vw;
+}
+#addList #newListDropdown button:hover, #addList #newItemDropdown button:hover, #addItem #newListDropdown button:hover, #addItem #newItemDropdown button:hover {
+  background-color: #21006d;
+}
+#addList:hover #newListDropdown, #addList:hover #newItemDropdown, #addItem:hover #newListDropdown, #addItem:hover #newItemDropdown {
+  right: -5px;
+}
+#addList #newItemDropdown, #addItem #newItemDropdown {
+  width: 550px;
+  right: -600px;
+}
+#addList #newItemDropdown input:nth-of-type(2), #addItem #newItemDropdown input:nth-of-type(2) {
+  margin-top: 5px;
+  height: 150px;
+}
+#addList:hover #newItemDropdown, #addItem:hover #newItemDropdown {
+  right: -15px;
+}
+
+#addItem {
+  display: none;
+}
+
+.active {
+  background-color: #300091;
+}
+
+.listItem {
+  display: flex;
+  font-size: x-large;
+  padding: 20px;
+  border-bottom: #b6b6b6 2px solid;
+}
+.listItem:hover {
+  background-color: #e9e9e9;
+}
+.listItem i {
+  margin-top: 2px;
+  padding: 0px 4px;
+  border-radius: 5px;
+}
+.listItem i:hover {
+  background-color: #b6b6b6;
+}
+.listItem .fa-check {
+  padding: 0px 1.4px;
+}
+.listItem p {
+  margin: 0px 20px;
+}
+
+/*# sourceMappingURL=style.css.map */

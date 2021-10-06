@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav>
+            <div id="lists">
+
+            </div>
+            <div>
+                <div id="addItem">
+                    <a>Add item</a>
+                    <div id="newItemDropdown">
+                        <h4>Create a new Item:</h4>
+                        <input type="text" placeholder="Item name" id="itemName">
+                        <input type="text" placeholder="Item description" id="itemDesc">
+                        <button onclick="addToList()">Create Item</button>
+                    </div>
+                </div>
+                <div id="addList">
+                    <a>Add list</a>
+                    <div id="newListDropdown">
+                        <h4>Create a new list:</h4>
+                        <input type="text" placeholder="List name" id="listName">
+                        <button onclick="createList()">Create List</button>
+                    </div>
+                </div>
+                <a onclick="Clear()">Clear</a>
+            </div>
+        </nav>
+        <main>
+            <div id="listDisplay">
+
+            </div>
+        </main>
+        <script src="Javascript/script.js" async defer></script>
+    </body>
+</html>
