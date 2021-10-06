@@ -15,6 +15,7 @@ window.onload = function()
             for(let j = 0; j < old.lists[i].items.length; j++)
             {
                 listContainer.getList(i).addItem(old.lists[i].items[j].name, old.lists[i].items[j].desc, true, old.lists[i].items[j].finished);
+                listContainer.getList(i).getItem(j).finished = old.lists[i].items[j].finished;
             }
         }
     }
@@ -73,6 +74,7 @@ function toggleActive(index)
         document.getElementById("i" + index).classList.add("fa-times");
     }
     listContainer.getList(listIndex).getItem(index).finished = !listContainer.getList(listIndex).getItem(index).finished;
+    save();
 }
 
 function Clear()
