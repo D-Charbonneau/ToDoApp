@@ -154,7 +154,7 @@ nav div a:hover {
   color: #eefffe;
   position: fixed;
   bottom: 10px;
-  left: 10px;
+  left: -80px;
   transition: left 0.75s;
 }
 #delete:hover {
@@ -172,7 +172,7 @@ nav div a:hover {
   color: #eefffe;
   position: fixed;
   bottom: 52px;
-  left: 52px;
+  left: -92px;
   transition: left 0.75s;
 }
 #hideDelete:hover {
@@ -198,6 +198,31 @@ nav div a:hover {
   height: 40%;
   width: 40%;
   background-color: #e9e9e9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#modalBG #modal h1 {
+  text-align: center;
+}
+#modalBG #modal .df {
+  display: flex;
+  justify-content: space-evenly;
+}
+#modalBG #modal .df button {
+  width: 35%;
+  border-radius: 100vw;
+  border: none;
+  background-color: #270081;
+  color: #eefffe;
+  font-size: larger;
+  padding: 5px;
+}
+#modalBG #modal .df button:hover {
+  background-color: #1b005a;
+}
+#modalBG #modal .df button:nth-of-type(2):hover {
+  background-color: #a50000;
 }
 
 /*# sourceMappingURL=style.css.map */

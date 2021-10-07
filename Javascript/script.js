@@ -62,6 +62,8 @@ function chooseList(index)
     if(listIndex == undefined)
     {
         document.getElementById("addItem").style.display = "flex";
+        document.getElementById("delete").style.left = "10px"; 
+        document.getElementById("hideDelete").style.left = "52px";
     }
     else
     {
@@ -241,14 +243,17 @@ class List
         display.innerHTML = "";
         for(let i = 0; i < this.items.length; i++)
         {
+            let output = `<div class="listItem" id="${i}"><div id="itemClass${i}" class="left"><div><i class="fa fa-`;
             if(this.items[i].finished)
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div id="itemClass${i}" class="left"><div><i class="fa fa-check" title="Completed" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><p class="desc" onclick="toggleDesc(${i})">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
+                output += `check" title="Completed"`;
             }
             else
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div id="itemClass${i}" class="left"><div><i class="fa fa-times" title="Uncompleted" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><p class="desc" onclick="toggleDesc(${i})">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
+                output += `times" title="Uncompleted"`;
             }
+            output +=  `id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><p class="desc" onclick="toggleDesc(${i})">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
+            display.innerHTML += output;
         }
         save();
     }
@@ -301,7 +306,7 @@ function trash(index)
 function hide()
 {
     document.getElementById("delete").style.left = "-80px";
-    document.getElementById("hideDelete").style.left = "-80px";
+    document.getElementById("hideDelete").style.left = "-92px";
     setTimeout(() => 
     {
         document.getElementById("delete").style.left = "10px"; 
@@ -331,8 +336,19 @@ function toggleDesc(index)
 function deleteList()
 {
     listContainer.lists.splice(listIndex, 1);
-    chooseList(0);
-    listContainer.render();
+    toggleDeleteModal(false);
+    if(listContainer.lists[0] != undefined)
+    {
+        chooseList(0);
+    }
+    else
+    {
+        listContainer.render();
+        listIndex = undefined;
+        document.getElementById("addItem").style.display = "none";
+        document.getElementById("delete").style.left = "-80px"; 
+        document.getElementById("hideDelete").style.left = "-92px";
+    }
 }
 function toggleDeleteModal(modalToggle)
 {

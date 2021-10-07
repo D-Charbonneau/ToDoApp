@@ -6,6 +6,7 @@ $font: 'Roboto', sans-serif;
 $baseGrey: #e9e9e9;
 $darkerGrey: #cfcfcf;
 $darkGrey: #838383;
+$dangerRed: #a50000;
 
 body
 {
@@ -194,11 +195,11 @@ nav
     color: $themeFontColor;
     position: fixed;
     bottom: 10px;
-    left: 10px;
+    left: -80px;
     transition: left .75s;
     &:hover
     {
-        background-color: #a50000;
+        background-color: $dangerRed;
         color: black;
     }
 }
@@ -213,7 +214,7 @@ nav
     color: $themeFontColor;
     position: fixed;
     bottom: 52px;
-    left: 52px;
+    left: -92px;
     transition: left .75s;
     &:hover
     {
@@ -241,5 +242,35 @@ nav
         height: 40%;
         width: 40%;
         background-color: $baseGrey;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        h1 
+        {
+            text-align: center;
+        }
+        .df
+        {
+            display: flex;
+            justify-content: space-evenly;
+            button
+            {
+                width: 35%;
+                border-radius: 100vw;
+                border: none;
+                background-color: $theme;
+                color: $themeFontColor;
+                font-size: larger;
+                padding: 5px;
+                &:hover
+                {
+                    background-color: $themeDark;
+                }
+                &:nth-of-type(2):hover
+                {
+                    background-color: $dangerRed;
+                }
+            }
+        }
     }
 }
