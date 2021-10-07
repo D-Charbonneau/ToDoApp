@@ -9,6 +9,7 @@ nav {
   color: #eefffe;
   width: 100%;
   display: flex;
+  height: 59.2px;
   justify-content: space-between;
 }
 nav div {
@@ -24,17 +25,17 @@ nav div a:hover {
   background-color: #1b005a;
 }
 
-#addList, #addItem {
+#addList, #addItem, #listOverflow {
   margin: 0px;
   display: flex;
   flex-direction: column;
 }
-#addList #newListDropdown, #addList #newItemDropdown, #addItem #newListDropdown, #addItem #newItemDropdown {
+#addList #newListDropdown, #addList #listOverflowDrop, #addList #newItemDropdown, #addItem #newListDropdown, #addItem #listOverflowDrop, #addItem #newItemDropdown, #listOverflow #newListDropdown, #listOverflow #listOverflowDrop, #listOverflow #newItemDropdown {
   display: flex;
   position: absolute;
   margin: 0px;
   padding: 0px 20px 25px 20px;
-  top: 58.5px;
+  top: 59.2px;
   width: 325px;
   right: -375px;
   border: 1px grey solid;
@@ -48,16 +49,16 @@ nav div a:hover {
   align-items: center;
   box-shadow: 14px 6px 30px -9px #000000;
 }
-#addList #newListDropdown a, #addList #newItemDropdown a, #addItem #newListDropdown a, #addItem #newItemDropdown a {
+#addList #newListDropdown a, #addList #listOverflowDrop a, #addList #newItemDropdown a, #addItem #newListDropdown a, #addItem #listOverflowDrop a, #addItem #newItemDropdown a, #listOverflow #newListDropdown a, #listOverflow #listOverflowDrop a, #listOverflow #newItemDropdown a {
   padding: 0px;
 }
-#addList #newListDropdown input, #addList #newItemDropdown input, #addItem #newListDropdown input, #addItem #newItemDropdown input {
+#addList #newListDropdown input, #addList #listOverflowDrop input, #addList #newItemDropdown input, #addItem #newListDropdown input, #addItem #listOverflowDrop input, #addItem #newItemDropdown input, #listOverflow #newListDropdown input, #listOverflow #listOverflowDrop input, #listOverflow #newItemDropdown input {
   width: 80%;
   text-align: center;
   font-size: large;
   padding: 5px;
 }
-#addList #newListDropdown button, #addList #newItemDropdown button, #addItem #newListDropdown button, #addItem #newItemDropdown button {
+#addList #newListDropdown button, #addList #listOverflowDrop button, #addList #newItemDropdown button, #addItem #newListDropdown button, #addItem #listOverflowDrop button, #addItem #newItemDropdown button, #listOverflow #newListDropdown button, #listOverflow #listOverflowDrop button, #listOverflow #newItemDropdown button {
   margin-top: 15px;
   padding: 5px;
   width: 70%;
@@ -67,21 +68,48 @@ nav div a:hover {
   font-size: 18px;
   border-radius: 100vw;
 }
-#addList #newListDropdown button:hover, #addList #newItemDropdown button:hover, #addItem #newListDropdown button:hover, #addItem #newItemDropdown button:hover {
+#addList #newListDropdown button:hover, #addList #listOverflowDrop button:hover, #addList #newItemDropdown button:hover, #addItem #newListDropdown button:hover, #addItem #listOverflowDrop button:hover, #addItem #newItemDropdown button:hover, #listOverflow #newListDropdown button:hover, #listOverflow #listOverflowDrop button:hover, #listOverflow #newItemDropdown button:hover {
   background-color: #1b005a;
 }
-#addList:hover #newListDropdown, #addList:hover #newItemDropdown, #addItem:hover #newListDropdown, #addItem:hover #newItemDropdown {
+#addList:hover #newListDropdown, #addList:hover #listOverflowDrop, #addList:hover #newItemDropdown, #addItem:hover #newListDropdown, #addItem:hover #listOverflowDrop, #addItem:hover #newItemDropdown, #listOverflow:hover #newListDropdown, #listOverflow:hover #listOverflowDrop, #listOverflow:hover #newItemDropdown {
   right: -5px;
 }
-#addList #newItemDropdown, #addItem #newItemDropdown {
+#addList #newItemDropdown, #addItem #newItemDropdown, #listOverflow #newItemDropdown {
   width: 550px;
   right: -600px;
 }
-#addList #newItemDropdown input:nth-of-type(2), #addItem #newItemDropdown input:nth-of-type(2) {
+#addList #newItemDropdown input:nth-of-type(2), #addItem #newItemDropdown input:nth-of-type(2), #listOverflow #newItemDropdown input:nth-of-type(2) {
   margin-top: 5px;
   height: 150px;
 }
-#addList:hover #newItemDropdown, #addItem:hover #newItemDropdown {
+#addList #listOverflowDrop, #addItem #listOverflowDrop, #listOverflow #listOverflowDrop {
+  align-items: stretch;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 15px;
+  left: -450px;
+  width: 400px;
+  box-shadow: -14px 6px 30px -9px #000000;
+  transition: left 0.4s;
+  padding: 15px 0px;
+}
+#addList #listOverflowDrop a, #addItem #listOverflowDrop a, #listOverflow #listOverflowDrop a {
+  margin: 0px;
+  border-bottom: 2px solid #838383;
+  padding: 10px;
+}
+#addList #listOverflowDrop a:hover, #addItem #listOverflowDrop a:hover, #listOverflow #listOverflowDrop a:hover {
+  background-color: #cfcfcf;
+}
+#addList #listOverflowDrop a.active, #addItem #listOverflowDrop a.active, #listOverflow #listOverflowDrop a.active {
+  background-color: #e9e9e9;
+}
+#addList #listOverflowDrop a.active:hover, #addItem #listOverflowDrop a.active:hover, #listOverflow #listOverflowDrop a.active:hover {
+  background-color: #cfcfcf;
+}
+#addList:hover #listOverflowDrop, #addItem:hover #listOverflowDrop, #listOverflow:hover #listOverflowDrop {
+  left: 0px;
+}
+#addList:hover #newItemDropdown, #addItem:hover #newItemDropdown, #listOverflow:hover #newItemDropdown {
   right: -15px;
 }
 
@@ -90,7 +118,7 @@ nav div a:hover {
 }
 
 .active {
-  background-color: #300091;
+  background-color: #3800a8;
 }
 
 .listItem {
@@ -177,7 +205,7 @@ nav div a:hover {
 }
 #hideDelete:hover {
   background-color: #838383;
-  color: #300091;
+  color: #3800a8;
 }
 
 #modalBG {

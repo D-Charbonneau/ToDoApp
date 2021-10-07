@@ -67,10 +67,19 @@ function chooseList(index)
     }
     else
     {
+        if(listIndex >= 5)
+        {
+            document.getElementById("listOverflow").classList.remove("active");
+        }
         document.getElementById("list" + listIndex).classList.remove("active");
     }
     listIndex = index;
+    if(listIndex >= 5)
+    {
+        document.getElementById("listOverflow").classList.add("active");
+    }
     document.getElementById("list" + listIndex).classList.add("active");
+    
     listContainer.getList(listIndex).render();
 }
 
@@ -149,16 +158,39 @@ class ListContainer
     render()
     {
         let nav = document.getElementById("lists");
+        
         nav.innerHTML = "";
+        if(this.lists.length >= 5 && listIndex >= 5)
+        {
+            nav.innerHTML += `<div id="listOverflow"><a class="active"><i class="fa fa-bars"></i></a><div id="listOverflowDrop"></div></div>`;
+        }
+        else if(this.lists.length >= 5)
+        {
+            nav.innerHTML += `<div id="listOverflow"><a class=""><i class="fa fa-bars"></i></a><div id="listOverflowDrop"></div></div>`;
+        }
         for(let i = 0; i < this.lists.length; i++)
         {
-            if(i == listIndex)
+            if(i >= 5)
             {
-                nav.innerHTML += `<a id="list${i}" class="active" onclick="chooseList(${i})">${this.lists[i].listName}</a>`;
+                if(i == listIndex)
+                {
+                    document.getElementById("listOverflowDrop").innerHTML += `<a id="list${i}" class="active" onclick="chooseList(${i})">${this.lists[i].listName}</a>`
+                }
+                else
+                {
+                    document.getElementById("listOverflowDrop").innerHTML += `<a id="list${i}" class="" onclick="chooseList(${i})">${this.lists[i].listName}</a>`;
+                }
             }
             else
             {
-                nav.innerHTML += `<a id="list${i}" class="" onclick="chooseList(${i})">${this.lists[i].listName}</a>`;
+                if(i == listIndex)
+                {
+                    nav.innerHTML += `<a id="list${i}" class="active" onclick="chooseList(${i})">${this.lists[i].listName}</a>`;
+                }
+                else
+                {
+                    nav.innerHTML += `<a id="list${i}" class="" onclick="chooseList(${i})">${this.lists[i].listName}</a>`;
+                }
             }
         }
         save();
@@ -176,23 +208,6 @@ class ListContainer
         }
     }
 }
-
-function devList()
-{
-    listContainer.addList("FirstList");
-    listContainer.addList("SecondList");
-    listContainer.addList("ThirdList");
-    listContainer.getList(0).addItem("Hi there");
-    listContainer.getList(0).addItem("I am in a list");
-    listContainer.getList(0).addItem("You are not in a list");
-    listContainer.getList(0).addItem("Final entry of list one");
-    listContainer.getList(1).addItem("Hi");
-    listContainer.getList(1).addItem("Ok");
-    listContainer.getList(1).addItem("No");
-    listContainer.getList(2).addItem("Testing");
-    listContainer.getList(2).addItem("Last entry of the third list");
-}
-
 
 class List
 {
@@ -340,9 +355,11 @@ function deleteList()
     if(listContainer.lists[0] != undefined)
     {
         chooseList(0);
+        listContainer.render();
     }
     else
     {
+        document.getElementById("listDisplay").innerHTML = "";
         listContainer.render();
         listIndex = undefined;
         document.getElementById("addItem").style.display = "none";
@@ -364,8 +381,6 @@ function toggleDeleteModal(modalToggle)
         document.getElementById("modalBG").style.backgroundColor = "#00000000";
         document.getElementById("modal").style.top = "-50%";
     }
-    
-    //#0000006f color of transparent modal bg
 }
 
 let listContainer = new ListContainer();
