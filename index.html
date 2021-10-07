@@ -9,6 +9,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
+        <div id="modalBG">
+            <div id="modal">
+
+            </div>
+        </div>
         <nav>
             <div id="lists">
 
@@ -38,7 +43,7 @@
             <div id="listDisplay">
                 
             </div>
-            <button id="delete"><i class="fa fa-trash-o"></i></button>
+            <button id="delete" onclick="toggleDeleteModal(true)"><i class="fa fa-trash-o"></i></button>
             <button id="hideDelete" onclick="hide()"><i class="fa fa-times"></i></button>
         </main>
         <script src="Javascript/script.js" async defer></script>

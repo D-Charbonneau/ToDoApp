@@ -107,6 +107,9 @@ nav div a:hover {
   padding: 20px;
   align-items: center;
 }
+.listItem div div {
+  padding: 0px;
+}
 .listItem div i {
   margin-top: 2px;
   margin: 0px 5px;
@@ -125,12 +128,19 @@ nav div a:hover {
   border-radius: 5px;
 }
 
-.desc {
+.left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0px;
+}
+.left .desc {
   color: #838383;
   padding: 4px;
   border-radius: 5px;
+  word-wrap: normal;
 }
-.desc:hover {
+.left .desc:hover {
   background-color: #cfcfcf;
 }
 
@@ -168,6 +178,26 @@ nav div a:hover {
 #hideDelete:hover {
   background-color: #838383;
   color: #300091;
+}
+
+#modalBG {
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  position: fixed;
+  background-color: #00000000;
+  transition: background-color 0.75s;
+  z-index: 5;
+}
+#modalBG #modal {
+  transition: top 1s;
+  position: fixed;
+  border-radius: 20px;
+  left: 30%;
+  top: -50%;
+  height: 40%;
+  width: 40%;
+  background-color: #e9e9e9;
 }
 
 /*# sourceMappingURL=style.css.map */

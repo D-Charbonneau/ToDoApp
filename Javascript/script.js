@@ -243,11 +243,11 @@ class List
         {
             if(this.items[i].finished)
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-check" title="Completed" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div id="itemClass${i}" class="left"><div><i class="fa fa-check" title="Completed" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><p class="desc" onclick="toggleDesc(${i})">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
             }
             else
             {
-                display.innerHTML += `<div class="listItem" id="${i}"><div><i class="fa fa-times" title="Uncompleted" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p><p class="desc">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
+                display.innerHTML += `<div class="listItem" id="${i}"><div id="itemClass${i}" class="left"><div><i class="fa fa-times" title="Uncompleted" id="i${i}" onclick="toggleActive(${i})"></i><p id="p${i}"><b>${this.items[i].name}</b></p></div><p class="desc" onclick="toggleDesc(${i})">${shorten(this.items[i].desc, this.items[i].name)}</p></div><div><i class="fa fa-pencil" id="i${i}" onclick="edit(${i})"></i><i class="fa fa-trash" id="i${i}" onclick="trash(${i})"></i></div></div>`;
             }
         }
         save();
@@ -279,6 +279,7 @@ class ToDoItem
 
 function save()
 {
+    window.localStorage.clear(KEY);
     window.localStorage.setItem(KEY, JSON.stringify(listContainer));
 }
 
@@ -307,6 +308,48 @@ function hide()
         document.getElementById("hideDelete").style.left = "52px";
     }, 3500);
     
+}
+
+function toggleDesc(index)
+{
+    if(document.getElementById("itemClass" + index).style.flexDirection == "column")
+    {
+        document.getElementById("itemClass" + index).style.flexDirection = "row";
+        document.getElementById("itemClass" + index).style.alignItems = "center";
+        document.getElementsByClassName("desc")[index].innerText = shorten(listContainer.getList(listIndex).getItem(index).desc, listContainer.getList(listIndex).getItem(index).name);
+        document.getElementsByClassName("desc")[index].style.marginTop = "0px";
+    }
+    else
+    {
+        document.getElementById("itemClass" + index).style.flexDirection = "column";
+        document.getElementById("itemClass" + index).style.alignItems = "flex-start";
+        document.getElementsByClassName("desc")[index].innerText = listContainer.getList(listIndex).getItem(index).desc;
+        document.getElementsByClassName("desc")[index].style.marginTop = "5px";
+    }
+}
+
+function deleteList()
+{
+    listContainer.lists.splice(listIndex, 1);
+    chooseList(0);
+    listContainer.render();
+}
+function toggleDeleteModal(modalToggle)
+{
+    if(modalToggle)
+    {
+        document.getElementById("modalBG").style.pointerEvents = "auto";
+        document.getElementById("modalBG").style.backgroundColor = "#0000006f";
+        document.getElementById("modal").style.top = "20%";
+    }
+    else
+    {
+        document.getElementById("modalBG").style.pointerEvents = "none";
+        document.getElementById("modalBG").style.backgroundColor = "#00000000";
+        document.getElementById("modal").style.top = "-50%";
+    }
+    
+    //#0000006f color of transparent modal bg
 }
 
 let listContainer = new ListContainer();
